@@ -1,4 +1,5 @@
 # Implementation 01 of Conway's Game of Life
+# This version uses a nested list to represent the game grid
 
 import random
 import os
@@ -6,16 +7,12 @@ import time
 
 # Create random grid
 def create_grid(rows, cols):
-    grid = []
-    for _ in range(rows):
-        row = [random.choice([0, 1]) for _ in range(cols)]
-        grid.append(row)
-    return grid
+    return [[random.choice([0, 1]) for _ in range(cols)] for _ in range(rows)] # Each cell can be either dead (0) or alive (1)
 
 # Print the grid
 def print_grid(grid):
     for row in grid:
-        print(''.join(['#' if cell else '.' for cell in row]))
+        print(''.join(['#' if cell else '.' for cell in row])) # Alive cells printed as '#', dead cells as '.'
 
 # Count number of live neighbors for a given cell
 def count_live_neighbors(grid, row, col):
